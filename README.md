@@ -25,7 +25,10 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
     ```bash
     cd BruteCipher
     ```
-3. Open the `index.html` file in your browser to use the tool.
+3. Open the `index.html` file in your browser to use the tool:
+    ```bash
+    open index.html
+    ```
 
 ## Usage
 
