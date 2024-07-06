@@ -38,7 +38,7 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 
 ## Removing the Project
 If you want to remove the project from your local machine, you can use the following command:
-    ```bash
+    ```
     rm -rf BruteCipher
     ```
 
