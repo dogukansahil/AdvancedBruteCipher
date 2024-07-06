@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enhanced Encryption and Decryption</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 500px;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        .container input[type="text"], .container input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .container button:hover {
+            background-color: #45a049;
+        }
+        .container button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .container p {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .container textarea {
+            width: 100%;
+            height: 100px;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .container .show-passphrase {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .container .show-passphrase input {
+            width: auto;
+            margin-left: 10px;
+        }
+        .instructions {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encryption and Decryption</h1>
+        <div class="instructions">
+            <p>
+                This tool allows you to encrypt and decrypt text using two keys. You can either:
+            </p>
+            <ul>
+                <li>Remember or note down the two keys (Extra Key 1 and Extra Key 2),</li>
+                <li>Or remember or note down a 4-digit passphrase to export/import the keys securely.</li>
+            </ul>
+            <p>
+                If you use a memorable passphrase (e.g., the name of the platform like "github"), it will be easier to recall.
+                Only one of these (either the two keys or the 4-digit passphrase) is enough to securely manage your encrypted data.
+            </p>
+        </div>
+        <label for="inputText">Text to Encrypt/Decrypt:</label>
+        <input type="text" id="inputText" placeholder="Enter text...">
+        <label for="extraKey1">Extra Key 1:</label>
+        <input type="text" id="extraKey1" placeholder="Enter key 1...">
+        <label for="extraKey2">Extra Key 2:</label>
+        <input type="text" id="extraKey2" placeholder="Enter key 2...">
+        <button onclick="encrypt()">Encrypt</button>
+        <button onclick="decrypt()">Decrypt</button>
+        <p id="result"></p>
+        <hr>
+        <label for="keys">Key Export/Import:</label>
+        <textarea id="keys" placeholder="Keys JSON..."></textarea>
+        <label for="passphrase">4-digit Passphrase:</label>
+        <div class="show-passphrase">
+            <input type="password" id="passphrase" maxlength="4" placeholder="Enter 4-digit passphrase...">
+            <label for="showPassphrase">Show</label>
+            <input type="checkbox" id="showPassphrase" onclick="togglePassphraseVisibility()">
+        </div>
+        <button id="exportButton" onclick="requestPassphrase('export')">Export Keys</button>
+        <button id="importButton" onclick="requestPassphrase('import')">Import Keys</button>
+    </div>
+
+    <script>
+        const MODIFIER = BigInt(982451653);
+        const SHIFT = BigInt(6954011279);
+        const KEY = BigInt(43723116108);
+        const MOD_VALUE = BigInt(65536);
+        const ROUNDS = 6231;
+
+        function hashFunction(value, round, extraKey) {
+            let key = KEY + BigInt(extraKey.charCodeAt(round % extraKey.length));
+            return (value * MODIFIER + BigInt(Math.floor(Math.sin(Number(key) + round) * 1000)) + SHIFT + BigInt(round)) % MOD_VALUE;
+        }
+
+        function doubleHashFunction(value, round, extraKey1, extraKey2) {
+            let hashedValue = hashFunction(value, round, extraKey1);
+            return hashFunction(hashedValue, round, extraKey2);
+        }
+
+        function encrypt() {
+            let inputText = document.getElementById("inputText").value;
+            let extraKey1 = document.getElementById("extraKey1").value;
+            let extraKey2 = document.getElementById("extraKey2").value;
+            let charCodes = [];
+            for (let i = 0; i < inputText.length; i++) {
+                let charCode = BigInt(inputText.charCodeAt(i));
+                for (let round = 0; round < ROUNDS; round++) {
+                    charCode = doubleHashFunction(charCode, round, extraKey1, extraKey2);
+                }
+                charCodes.push(Number(charCode));
+            }
+            let uint16array = new Uint16Array(charCodes);
+            let blob = new Blob([uint16array], {type: 'application/octet-stream'});
+            let reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById("result").innerText = "Encrypted Text: " + btoa(reader.result);
+            };
+            reader.readAsBinaryString(blob);
+        }
+
+        function decrypt() {
+            let inputText = document.getElementById("inputText").value;
+            let extraKey1 = document.getElementById("extraKey1").value;
+            let extraKey2 = document.getElementById("extraKey2").value;
+            let encodedText = atob(inputText);
+            let uint16array = new Uint16Array(encodedText.length / 2);
+            for (let i = 0, j = 0; i < encodedText.length; i += 2, j++) {
+                let charCode = BigInt(encodedText.charCodeAt(i) + (encodedText.charCodeAt(i + 1) << 8));
+                for (let round = ROUNDS - 1; round >= 0; round--) {
+                    charCode = reverseDoubleHashFunction(charCode, round, extraKey1, extraKey2);
+                }
+                uint16array[j] = Number(charCode);
+            }
+            let result = '';
+            for (let charCode of uint16array) {
+                result += String.fromCharCode(charCode);
+            }
+            document.getElementById("result").innerText = "Decrypted Text: " + result;
+        }
+
+        function reverseDoubleHashFunction(value, round, extraKey1, extraKey2) {
+            let hashedValue = reverseHashFunction(value, round, extraKey2);
+            return reverseHashFunction(hashedValue, round, extraKey1);
+        }
+
+        function reverseHashFunction(value, round, extraKey) {
+            let key = KEY + BigInt(extraKey.charCodeAt(round % extraKey.length));
+            return (value - SHIFT - BigInt(Math.floor(Math.sin(Number(key) + round) * 1000)) - BigInt(round) + MOD_VALUE) * modularInverse(MODIFIER, MOD_VALUE) % MOD_VALUE;
+        }
+
+        function modularInverse(a, mod) {
+            let m0 = mod, t, q;
+            let x0 = BigInt(0), x1 = BigInt(1);
+            if (mod === BigInt(1)) return BigInt(0);
+            while (a > BigInt(1)) {
+                q = a / mod;
+                t = mod;
+                mod = a % mod, a = t;
+                t = x0;
+                x0 = x1 - q * x0;
+                x1 = t;
+            }
+            if (x1 < BigInt(0)) x1 += m0;
+            return x1;
+        }
+
+        function exportKeys() {
+            let extraKey1 = document.getElementById("extraKey1").value;
+            let extraKey2 = document.getElementById("extraKey2").value;
+            let keys = {
+                extraKey1: extraKey1,
+                extraKey2: extraKey2
+            };
+            document.getElementById("keys").value = JSON.stringify(keys);
+            encryptKeys();
+        }
+
+        function importKeys() {
+            decryptKeys();
+            let keys = JSON.parse(document.getElementById("keys").value);
+            document.getElementById("extraKey1").value = keys.extraKey1;
+            document.getElementById("extraKey2").value = keys.extraKey2;
+        }
+
+        function encryptKeys() {
+            let keys = document.getElementById("keys").value;
+            let passphrase = document.getElementById("passphrase").value;
+            if (keys.trim() === "" || passphrase.trim() === "" || passphrase.length !== 4) {
+                alert("Please enter keys and a 4-digit passphrase!");
+                return;
+            }
+
+            let charCodes = [];
+            for (let i = 0; i < keys.length; i++) {
+                let charCode = BigInt(keys.charCodeAt(i));
+                for (let round = 0; round < ROUNDS; round++) {
+                    charCode = doubleHashFunction(charCode, round, passphrase, passphrase);
+                }
+                charCodes.push(Number(charCode));
+            }
+            let uint16array = new Uint16Array(charCodes);
+            let blob = new Blob([uint16array], {type: 'application/octet-stream'});
+            let reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById("keys").value = btoa(reader.result);
+            };
+            reader.readAsBinaryString(blob);
+        }
+
+        function decryptKeys() {
+            let keys = document.getElementById("keys").value;
+            let passphrase = document.getElementById("passphrase").value;
+            if (keys.trim() === "" || passphrase.trim() === "" || passphrase.length !== 4) {
+                alert("Please enter encrypted keys and a 4-digit passphrase!");
+                return;
+            }
+
+            let encodedText = atob(keys);
+            let uint16array = new Uint16Array(encodedText.length / 2);
+            for (let i = 0, j = 0; i < encodedText.length; i += 2, j++) {
+                let charCode = BigInt(encodedText.charCodeAt(i) + (encodedText.charCodeAt(i + 1) << 8));
+                for (let round = ROUNDS - 1; round >= 0; round--) {
+                    charCode = reverseDoubleHashFunction(charCode, round, passphrase, passphrase);
+                }
+                uint16array[j] = Number(charCode);
+            }
+            let result = '';
+            for (let charCode of uint16array) {
+                result += String.fromCharCode(charCode);
+            }
+            document.getElementById("keys").value = result;
+        }
+
+        function togglePassphraseVisibility() {
+            let passphraseInput = document.getElementById("passphrase");
+            if (document.getElementById("showPassphrase").checked) {
+                passphraseInput.type = "text";
+            } else {
+                passphraseInput.type = "password";
+            }
+        }
+
+        function requestPassphrase(action) {
+            let passphrase = document.getElementById("passphrase").value;
+            if (passphrase.trim() === "" || passphrase.length !== 4) {
+                alert("Please enter a 4-digit passphrase!");
+                return;
+            }
+            if (action === 'export') {
+                exportKeys();
+            } else if (action === 'import') {
+                importKeys();
+            }
+        }
+    </script>
+</body>
+</html>
