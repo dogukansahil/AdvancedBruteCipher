@@ -36,6 +36,12 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 2. Provide the necessary keys.
 3. Click on the "Encrypt" or "Decrypt" button to see the result.
 
+## Removing the Project
+If you want to remove the project from your local machine, you can use the following command:
+    ```bash
+    rm -rf BruteCipher
+    ```
+
 ## Extended Description
 
 BruteCipher aims to provide a user-friendly and secure way to manage text encryption and decryption without relying on external services or CDNs. All operations are performed locally in your browser using HTML, JavaScript, and CSS, ensuring that your data remains private and secure.
