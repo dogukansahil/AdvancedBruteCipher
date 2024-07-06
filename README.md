@@ -17,6 +17,8 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 
 ## Installation
 
+Simply download and open the `index.html` file to begin using the tool.
+
 1. Clone the repository:
     ```bash
     git clone https://github.com/dogukansahil/BruteCipher.git
