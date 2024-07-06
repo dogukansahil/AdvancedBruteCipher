@@ -70,6 +70,3 @@ We welcome contributions! Please fork this repository and submit pull requests t
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## Contact
-
-For any questions or feedback, feel free to contact us at [your-email@example.com](mailto:your-email@example.com).
