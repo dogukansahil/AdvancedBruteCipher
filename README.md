@@ -17,6 +17,8 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 
 ## Installation
 
+Simply download and open the `index.html` file to begin using the tool.
+
 1. Clone the repository:
     ```bash
     git clone https://github.com/dogukansahil/BruteCipher.git
@@ -25,13 +27,22 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
     ```bash
     cd BruteCipher
     ```
-3. Open the `index.html` file in your browser to use the tool.
+3. Open the `index.html` file in your browser to use the tool:
+    ```bash
+    open index.html
+    ```
 
 ## Usage
 
 1. Enter the text you want to encrypt or decrypt.
 2. Provide the necessary keys.
 3. Click on the "Encrypt" or "Decrypt" button to see the result.
+
+## Removing the Project
+If you want to remove the project from your local machine, you can use the following command:
+    ```
+    rm -rf BruteCipher
+    ```
 
 ## Extended Description
 
@@ -60,7 +71,7 @@ We are continuously working on enhancing BruteCipher. Future updates will includ
 
 ## Important Notice
 
-**Warning:** This is a beta version. Do not use BruteCipher for important or sensitive information at this stage. We recommend waiting for the stable release for critical use cases.
+**Warning:** This is a beta version. Do not use BruteCipher for important or sensitive information at this stage. We recommend waiting for the stable release for critical use cases. **Do not select important passwords with this algorithm and always keep them up to date.**
 
 ## Contributing
 
@@ -69,4 +80,3 @@ We welcome contributions! Please fork this repository and submit pull requests t
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
