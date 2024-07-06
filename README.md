@@ -1,6 +1,12 @@
 # BruteCipher
 
+![alt text](https://brutecipher.com/BruteCipher.jpg)
+
 Welcome to BruteCipher, a simple and secure encryption tool inspired by historical figures. This is the beta version of our project, and we are constantly working on improving its features and security.
+
+## Demo
+
+[Demo](https://brutecipher.com/) | **Do not use here for encryption and decryption.**
 
 ## Features
 - Encrypt and decrypt text using a robust algorithm
@@ -64,6 +70,3 @@ We welcome contributions! Please fork this repository and submit pull requests t
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## Contact
-
-For any questions or feedback, feel free to contact us at [your-email@example.com](mailto:your-email@example.com).
