@@ -71,7 +71,7 @@ We are continuously working on enhancing BruteCipher. Future updates will includ
 
 ## Important Notice
 
-**Warning:** This is a beta version. Do not use BruteCipher for important or sensitive information at this stage. We recommend waiting for the stable release for critical use cases.
+**Warning:** This is a beta version. Do not use BruteCipher for important or sensitive information at this stage. We recommend waiting for the stable release for critical use cases. **Do not select important passwords with this algorithm and always keep them up to date.**
 
 ## Contributing
 
@@ -80,4 +80,3 @@ We welcome contributions! Please fork this repository and submit pull requests t
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
-
