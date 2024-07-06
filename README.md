@@ -4,7 +4,7 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 
 ## Demo
 
-[Demo](https://html-preview.github.io/?url=https://github.com/dogukansahil/BruteCipher/blob/main/index.html) | **Do not use here for encryption and decryption.**
+[Demo](https://brutecipher.com/) | **Do not use here for encryption and decryption.**
 
 ## Features
 - Encrypt and decrypt text using a robust algorithm
