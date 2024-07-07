@@ -15,7 +15,7 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 - No external CDN dependencies
 - All operations are performed locally in your browser using HTML, JavaScript, and CSS
 
-## Installation
+## Installation HTML version 
 
 Simply download and open the `index.html` file to begin using the tool.
 
@@ -31,6 +31,35 @@ Simply download and open the `index.html` file to begin using the tool.
     ```bash
     open index.html
     ```
+## Python Version
+
+### Installation
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/dogukansahil/BruteCipher.git
+    ```
+2. Navigate to the project directory:
+    ```sh
+    cd BruteCipher
+    ```
+3. Make sure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
+4. Run the Python application:
+    ```sh
+    python brutecipher.py
+    ```
+
+### Usage
+
+1. Enter the text you want to encrypt or decrypt in the input field.
+2. Provide the necessary keys in the respective fields.
+3. Click on the "Encrypt" or "Decrypt" button to see the result in the output area.
+
+### Removing the Project
+
+If you want to remove the project from your local machine, you can use the following command:
+```sh
+rm -rf BruteCipher
 
 ## Usage
 
