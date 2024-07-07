@@ -31,6 +31,7 @@ Simply download and open the `index.html` file to begin using the tool.
     ```bash
     open index.html
     ```
+
 ## Python Version
 
 ### Installation
@@ -58,18 +59,7 @@ Simply download and open the `index.html` file to begin using the tool.
 ### Removing the Project
 
 If you want to remove the project from your local machine, you can use the following command:
-```sh
-rm -rf BruteCipher
-
-## Usage
-
-1. Enter the text you want to encrypt or decrypt.
-2. Provide the necessary keys.
-3. Click on the "Encrypt" or "Decrypt" button to see the result.
-
-## Removing the Project
-If you want to remove the project from your local machine, you can use the following command:
-    ```
+    ```sh
     rm -rf BruteCipher
     ```
 
