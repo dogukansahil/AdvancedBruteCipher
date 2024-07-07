@@ -12,8 +12,8 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 - Encrypt and decrypt text using a robust algorithm
 - Easy-to-use interface
 - Secure key management
-- No external CDN dependencies
-- All operations are performed locally in your browser using HTML, JavaScript, and CSS
+- No external CDN & API dependencies
+- All operations are performed locally in your browser using HTML, JavaScript, and CSS or local python code.
 
 ## Installation HTML version 
 
