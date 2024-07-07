@@ -71,7 +71,7 @@ We are continuously working on enhancing BruteCipher. Future updates will includ
 
 ## Important Notice
 
-**Warning:** This is a beta version. Do not use BruteCipher for important or sensitive information at this stage. We recommend waiting for the stable release for critical use cases. **Do not select important passwords with this algorithm and always keep them up to date.**
+**Warning:** This is a beta version. Do not use BruteCipher for important or sensitive information at this stage. We recommend waiting for the stable release for critical use cases. **Do not select important passwords with this algorithm and always keep them up to date.** Parameters may change!
 
 ## Contributing
 
