@@ -59,7 +59,7 @@ Simply download and open the `index.html` file to begin using the tool.
 ### Removing the Project
 
 If you want to remove the project from your local machine, you can use the following command:
-    ```sh
+    ```
     rm -rf BruteCipher
     ```
 
