@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BruteCipher</title>
+    <title>AdvancedBruteCipher</title>
     <meta name="robots" content="noindex, nofollow">
     <style>
         body {
@@ -137,11 +137,12 @@
     </div>
 
     <script>
-        const MODIFIER = BigInt(982451653);
-        const SHIFT = BigInt(6954011279);
-        const KEY = BigInt(41327611830);
+        const MODIFIER = BigInt(9824516953);
+        const SHIFT = BigInt(69540112799);
+        const KEY = BigInt(413276118390);
         const MOD_VALUE = BigInt(65536);
-        const ROUNDS = 6231;
+        const ROUNDS = 90000; 
+        const BLOCK_SIZE = 16; 
 
         function hashFunction(value, round, extraKey) {
             let key = KEY + BigInt(extraKey.charCodeAt(round % extraKey.length));
@@ -158,13 +159,22 @@
             let extraKey1 = document.getElementById("extraKey1").value;
             let extraKey2 = document.getElementById("extraKey2").value;
             let charCodes = [];
-            for (let i = 0; i < inputText.length; i++) {
-                let charCode = BigInt(inputText.charCodeAt(i));
-                for (let round = 0; round < ROUNDS; round++) {
-                    charCode = doubleHashFunction(charCode, round, extraKey1, extraKey2);
-                }
-                charCodes.push(Number(charCode));
+            
+
+            while (inputText.length % BLOCK_SIZE !== 0) {
+                inputText += '\0';
             }
+
+            for (let i = 0; i < inputText.length; i += BLOCK_SIZE) {
+                for (let j = 0; j < BLOCK_SIZE; j++) {
+                    let charCode = BigInt(inputText.charCodeAt(i + j));
+                    for (let round = 0; round < ROUNDS; round++) {
+                        charCode = doubleHashFunction(charCode, round, extraKey1, extraKey2);
+                    }
+                    charCodes.push(Number(charCode));
+                }
+            }
+
             let uint16array = new Uint16Array(charCodes);
             let blob = new Blob([uint16array], {type: 'application/octet-stream'});
             let reader = new FileReader();
@@ -180,18 +190,24 @@
             let extraKey2 = document.getElementById("extraKey2").value;
             let encodedText = atob(inputText);
             let uint16array = new Uint16Array(encodedText.length / 2);
-            for (let i = 0, j = 0; i < encodedText.length; i += 2, j++) {
-                let charCode = BigInt(encodedText.charCodeAt(i) + (encodedText.charCodeAt(i + 1) << 8));
-                for (let round = ROUNDS - 1; round >= 0; round--) {
-                    charCode = reverseDoubleHashFunction(charCode, round, extraKey1, extraKey2);
+            
+            for (let i = 0; i < encodedText.length; i += 2) {
+                uint16array[i / 2] = encodedText.charCodeAt(i) | (encodedText.charCodeAt(i + 1) << 8);
+            }
+
+            let decryptedText = '';
+            for (let i = 0; i < uint16array.length; i += BLOCK_SIZE) {
+                for (let j = 0; j < BLOCK_SIZE; j++) {
+                    let charCode = BigInt(uint16array[i + j]);
+                    for (let round = ROUNDS - 1; round >= 0; round--) {
+                        charCode = reverseDoubleHashFunction(charCode, round, extraKey1, extraKey2);
+                    }
+                    decryptedText += String.fromCharCode(Number(charCode));
                 }
-                uint16array[j] = Number(charCode);
             }
-            let result = '';
-            for (let charCode of uint16array) {
-                result += String.fromCharCode(charCode);
-            }
-            document.getElementById("result").innerText = "Decrypted Text: " + result;
+
+            decryptedText = decryptedText.replace(/\0+$/, '');
+            document.getElementById("result").innerText = "Decrypted Text: " + decryptedText;
         }
 
         function reverseDoubleHashFunction(value, round, extraKey1, extraKey2) {
