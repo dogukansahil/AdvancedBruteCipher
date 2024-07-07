@@ -3,11 +3,12 @@ from tkinter import messagebox
 import base64
 import math
 
-MODIFIER = 982451653
-SHIFT = 6954011279
-KEY = 41327611830
+MODIFIER = 9824516953
+SHIFT = 69540112799
+KEY = 413276118390
 MOD_VALUE = 65536
-ROUNDS = 6231
+ROUNDS = 90000
+BLOCK_SIZE = 16
 
 def hash_function(value, round, extra_key):
     key = KEY + ord(extra_key[round % len(extra_key)])
@@ -24,16 +25,23 @@ def encrypt():
     if not input_text or not extra_key1 or not extra_key2:
         messagebox.showerror("Error", "Please fill in all fields.")
         return
+    
     char_codes = []
-    for char in input_text:
-        char_code = ord(char)
-        for round in range(ROUNDS):
-            char_code = double_hash_function(char_code, round, extra_key1, extra_key2)
-        char_codes.append(char_code)
+    while len(input_text) % BLOCK_SIZE != 0:
+        input_text += '\0'
+    
+    for i in range(0, len(input_text), BLOCK_SIZE):
+        for j in range(BLOCK_SIZE):
+            char_code = ord(input_text[i + j])
+            for round in range(ROUNDS):
+                char_code = double_hash_function(char_code, round, extra_key1, extra_key2)
+            char_codes.append(char_code)
+    
     uint16array = bytearray()
     for code in char_codes:
         uint16array.append(code & 0xFF)
         uint16array.append((code >> 8) & 0xFF)
+    
     encrypted_text = base64.b64encode(uint16array).decode('utf-8')
     result_text.delete(1.0, tk.END)
     result_text.insert(tk.END, encrypted_text)
@@ -45,6 +53,7 @@ def decrypt():
     if not input_text or not extra_key1 or not extra_key2:
         messagebox.showerror("Error", "Please fill in all fields.")
         return
+    
     encoded_text = base64.b64decode(input_text)
     char_codes = []
     for i in range(0, len(encoded_text), 2):
@@ -52,7 +61,9 @@ def decrypt():
         for round in range(ROUNDS - 1, -1, -1):
             char_code = reverse_double_hash_function(char_code, round, extra_key1, extra_key2)
         char_codes.append(char_code)
+    
     result = ''.join(chr(code) for code in char_codes)
+    result = result.replace('\0', '')
     result_text.delete(1.0, tk.END)
     result_text.insert(tk.END, result)
 
@@ -105,7 +116,7 @@ result_text.pack()
 footer_frame = tk.Frame(app, padx=10, pady=10)
 footer_frame.pack(pady=10)
 
-footer_label = tk.Label(footer_frame, text="Beta Version 0.1.1 - July 2024\nGitHub: https://github.com/dogukansahil/BruteCipher", font=("Arial", 8))
+footer_label = tk.Label(footer_frame, text="Beta Version 0.2 - July 2024\nGitHub: https://github.com/dogukansahil/BruteCipher", font=("Arial", 8))
 footer_label.pack()
 
 app.mainloop()
