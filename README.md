@@ -1,7 +1,7 @@
 # BruteCipher
 ## Et tu, Brute?
 
-![alt text](https://brutecipher.com/BruteCipher.jpg)
+![BruteCipher](https://brutecipher.com/BruteCipher.jpg)
 
 Welcome to BruteCipher, a simple and secure encryption tool inspired by historical figures. This is the beta version of our project, and we are constantly working on improving its features and security.
 
@@ -14,9 +14,9 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 - Easy-to-use interface
 - Secure key management
 - No external CDN & API dependencies
-- All operations are performed locally in your browser using HTML, JavaScript, and CSS or local python code.
+- All operations are performed locally in your browser using HTML, JavaScript, and CSS or local Python code.
 
-## Installation HTML version 
+## Installation HTML Version 
 
 Simply download and open the `index.html` file to begin using the tool.
 
@@ -38,16 +38,16 @@ Simply download and open the `index.html` file to begin using the tool.
 ### Installation
 
 1. Clone the repository:
-    ```sh
+    ```bash
     git clone https://github.com/dogukansahil/BruteCipher.git
     ```
 2. Navigate to the project directory:
-    ```sh
+    ```bash
     cd BruteCipher
     ```
 3. Make sure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
 4. Run the Python application:
-    ```sh
+    ```bash
     python brutecipher.py
     ```
 
@@ -60,7 +60,7 @@ Simply download and open the `index.html` file to begin using the tool.
 ### Removing the Project
 
 If you want to remove the project from your local machine, you can use the following command:
-    ```
+    ```bash
     rm -rf BruteCipher
     ```
 
@@ -100,3 +100,21 @@ We welcome contributions! Please fork this repository and submit pull requests t
 ## License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+# BruteCipher Wiki
+
+## About BruteCipher
+
+### Origin of the Name
+The name **BruteCipher** is inspired by both the historical figure Brutus and the concept of brute force in cryptography. The famous phrase **"Et tu, Brute?"** (And you, Brutus?) from Shakespeare's play Julius Caesar symbolizes betrayal and intrigue, themes often associated with the need for secure communication. The term **brute force** refers to a method in cryptography where an attacker tries all possible keys to decrypt data. BruteCipher aims to provide robust encryption, making such brute force attacks impractical.
+
+### Unique Aspects of BruteCipher
+- **No External CDN Dependencies**: BruteCipher does not rely on any external Content Delivery Networks (CDNs). All code and resources are hosted locally, ensuring that your data remains private and secure.
+- **Local Encryption and Decryption**: All encryption and decryption operations are performed locally within your browser using HTML, JavaScript, and CSS. This means your data is never transmitted over the internet, providing an additional layer of security.
+
+## Future Enhancements
+We are continuously working on enhancing BruteCipher. Future updates will include:
+- Improved user interface
+- Enhanced security features
+- Support for more complex encryption algorithms
+- Integration with local password storage systems
