@@ -51,6 +51,21 @@ Simply download and open the `index.html` file to begin using the tool.
     python brutecipher.py
     ```
 
+### Updating the Application
+
+To ensure you have the latest updates and improvements:
+
+1. Navigate to the project directory if you are not already there:
+    ```bash
+    cd BruteCipher
+    ```
+2. Pull the latest changes from the repository:
+    ```bash
+    git pull
+    ```
+
+This will update your local copy with the most recent version from the GitHub repository.
+
 ### Usage
 
 1. Enter the text you want to encrypt or decrypt in the input field.
