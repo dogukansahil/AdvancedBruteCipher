@@ -79,7 +79,7 @@ BruteCipher aims to provide a user-friendly and secure way to manage text encryp
 
 - **Double Hashing Algorithm**: The algorithm applies two rounds of hashing to the input text, with each round using a different key. This makes it significantly harder for unauthorized parties to decrypt the data without the correct keys.
 - **Key Management**: Users can generate and store their keys locally, ensuring that sensitive information is not exposed to external threats.
-- **Passphrase Protection**: A 4-digit passphrase can be used to export and import keys, adding an extra layer of security and convenience.
+- **Passphrase Protection**: The passphrase can be any length, providing flexibility and adding an extra layer of security and convenience.
 
 ### Future Plans
 
