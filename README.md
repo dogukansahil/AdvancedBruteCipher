@@ -1,4 +1,4 @@
-# AdvancedBruteCipher (ABC)
+# Advanced Brute Cipher (ABC)
 ## Et tu, Brute?
 
 ![BruteCipher](https://brutecipher.com/BruteCipher.jpg)
