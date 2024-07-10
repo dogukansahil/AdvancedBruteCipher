@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AdvancedBruteCipher</title>
+    <title>Advanced Brute Cipher</title>
     <meta name="robots" content="noindex, nofollow">
     <style>
         body {
@@ -139,12 +139,8 @@
         <textarea id="keys" placeholder="Keys JSON..."></textarea>
         <label for="passphrase">4-digit Passphrase:</label>
         <div class="show-passphrase">
-            <input type="password" id="passphrase" maxlength="4" placeholder="Enter 4-digit passphrase...">
-            <label for="showPassphrase">Show</label>
-            <input type="checkbox" id="showPassphrase" onclick="togglePassphraseVisibility()">
+            <input type="text" id="passphrase" placeholder="Enter your passphrase...">
         </div>
-        <button id="exportButton" onclick="requestPassphrase('export')">Export Keys</button>
-        <button id="importButton" onclick="requestPassphrase('import')">Import Keys</button>
         <button onclick="exportTable()">Export Table</button>
         <button onclick="importTable()">Import Table</button>
         <table id="historyTable">
@@ -159,10 +155,9 @@
             </tbody>
         </table>
         <div class="footer">
-            <p>Beta Version 0.3 - July 2024 </p><p><a href="https://github.com/dogukansahil/BruteCipher">GitHub</a></p>
+            <p>Beta Version 0.3.1 - July 2024 </p><p><a href="https://github.com/dogukansahil/BruteCipher">GitHub</a></p>
         </div>
     </div>
-
     <script>
         const MODIFIER = BigInt(9824516953);
         const SHIFT = BigInt(69540112799);
