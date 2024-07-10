@@ -22,7 +22,7 @@
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 100%;
-            max-width: 600px;
+            max-width: 1400px;
             box-sizing: border-box;
         }
         .container h1 {
@@ -98,6 +98,20 @@
             font-size: 14px;
             color: #666;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -131,8 +145,21 @@
         </div>
         <button id="exportButton" onclick="requestPassphrase('export')">Export Keys</button>
         <button id="importButton" onclick="requestPassphrase('import')">Import Keys</button>
+        <button onclick="exportTable()">Export Table</button>
+        <button onclick="importTable()">Import Table</button>
+        <table id="historyTable">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Text</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
         <div class="footer">
-            <p>Beta Version 0.2 - July 2024 </p><p><a href="https://github.com/dogukansahil/BruteCipher">GitHub</a></p>
+            <p>Beta Version 0.3 - July 2024 </p><p><a href="https://github.com/dogukansahil/BruteCipher">GitHub</a></p>
         </div>
     </div>
 
@@ -141,8 +168,8 @@
         const SHIFT = BigInt(69540112799);
         const KEY = BigInt(413276118390);
         const MOD_VALUE = BigInt(65536);
-        const ROUNDS = 90000; 
-        const BLOCK_SIZE = 16; 
+        const ROUNDS = 90000;
+        const BLOCK_SIZE = 16;
 
         function hashFunction(value, round, extraKey) {
             let key = KEY + BigInt(extraKey.charCodeAt(round % extraKey.length));
@@ -152,62 +179,6 @@
         function doubleHashFunction(value, round, extraKey1, extraKey2) {
             let hashedValue = hashFunction(value, round, extraKey1);
             return hashFunction(hashedValue, round, extraKey2);
-        }
-
-        function encrypt() {
-            let inputText = document.getElementById("inputText").value;
-            let extraKey1 = document.getElementById("extraKey1").value;
-            let extraKey2 = document.getElementById("extraKey2").value;
-            let charCodes = [];
-            
-
-            while (inputText.length % BLOCK_SIZE !== 0) {
-                inputText += '\0';
-            }
-
-            for (let i = 0; i < inputText.length; i += BLOCK_SIZE) {
-                for (let j = 0; j < BLOCK_SIZE; j++) {
-                    let charCode = BigInt(inputText.charCodeAt(i + j));
-                    for (let round = 0; round < ROUNDS; round++) {
-                        charCode = doubleHashFunction(charCode, round, extraKey1, extraKey2);
-                    }
-                    charCodes.push(Number(charCode));
-                }
-            }
-
-            let uint16array = new Uint16Array(charCodes);
-            let blob = new Blob([uint16array], {type: 'application/octet-stream'});
-            let reader = new FileReader();
-            reader.onload = function() {
-                document.getElementById("result").innerText = "Encrypted Text: " + btoa(reader.result);
-            };
-            reader.readAsBinaryString(blob);
-        }
-
-        function decrypt() {
-            let inputText = document.getElementById("inputText").value;
-            let extraKey1 = document.getElementById("extraKey1").value;
-            let extraKey2 = document.getElementById("extraKey2").value;
-            let encodedText = atob(inputText);
-            let uint16array = new Uint16Array(encodedText.length / 2);
-            
-            for (let i = 0; i < encodedText.length; i += 2) {
-                uint16array[i / 2] = encodedText.charCodeAt(i) | (encodedText.charCodeAt(i + 1) << 8);
-            }
-
-            let decryptedText = '';
-            for (let i = 0; i < uint16array.length; i += BLOCK_SIZE) {
-                for (let j = 0; j < BLOCK_SIZE; j++) {
-                    let charCode = BigInt(uint16array[i + j]);
-                    for (let round = ROUNDS - 1; round >= 0; round--) {
-                        charCode = reverseDoubleHashFunction(charCode, round, extraKey1, extraKey2);
-                    }
-                    decryptedText += String.fromCharCode(Number(charCode));
-                }
-            }
-
-            decryptedText = decryptedText.replace(/\0+$/, '');
-            document.getElementById("result").innerText = "Decrypted Text: " + decryptedText;
         }
 
         function reverseDoubleHashFunction(value, round, extraKey1, extraKey2) {
@@ -234,6 +205,88 @@
             }
             if (x1 < BigInt(0)) x1 += m0;
             return x1;
+        }
+
+        function encrypt() {
+            let inputText = document.getElementById("inputText").value;
+            let extraKey1 = document.getElementById("extraKey1").value;
+            let extraKey2 = document.getElementById("extraKey2").value;
+            let charCodes = [];
+
+            while (inputText.length % BLOCK_SIZE !== 0) {
+                inputText += '\0';
+            }
+
+            for (let i = 0; i < inputText.length; i++) {
+                let charCode = BigInt(inputText.charCodeAt(i));
+                for (let round = 0; round < ROUNDS; round++) {
+                    charCode = doubleHashFunction(charCode, round, extraKey1, extraKey2);
+                }
+                charCodes.push(Number(charCode));
+            }
+
+            let uint16array = new Uint16Array(charCodes);
+            let blob = new Blob([uint16array], {type: 'application/octet-stream'});
+            let reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById("result").innerText = "Encrypted Text: " + btoa(reader.result);
+                updateHistory('Encrypt', inputText, btoa(reader.result));
+            };
+            reader.readAsBinaryString(blob);
+        }
+
+        function decrypt() {
+            let inputText = atob(document.getElementById("inputText").value);
+            let extraKey1 = document.getElementById("extraKey1").value;
+            let extraKey2 = document.getElementById("extraKey2").value;
+            let uint16array = new Uint16Array(inputText.length / 2);
+
+            for (let i = 0; i < inputText.length; i += 2) {
+                uint16array[i / 2] = inputText.charCodeAt(i) | (inputText.charCodeAt(i + 1) << 8);
+            }
+
+            let decryptedText = '';
+            for (let i = 0; i < uint16array.length; i++) {
+                let charCode = BigInt(uint16array[i]);
+                for (let round = ROUNDS - 1; round >= 0; round--) {
+                    charCode = reverseDoubleHashFunction(charCode, round, extraKey1, extraKey2);
+                }
+                decryptedText += String.fromCharCode(Number(charCode));
+            }
+
+            decryptedText = decryptedText.replace(/\0+$/, '');
+            document.getElementById("result").innerText = "Decrypted Text: " + decryptedText;
+            updateHistory('Decrypt', document.getElementById("inputText").value, decryptedText);
+        }
+
+        function updateHistory(action, text, result) {
+            let table = document.getElementById('historyTable').getElementsByTagName('tbody')[0];
+            let newRow = table.insertRow();
+            newRow.insertCell(0).textContent = action;
+            newRow.insertCell(1).textContent = text;
+            newRow.insertCell(2).textContent = result;
+        }
+
+        function togglePassphraseVisibility() {
+            let passphraseInput = document.getElementById("passphrase");
+            if (document.getElementById("showPassphrase").checked) {
+                passphraseInput.type = "text";
+            } else {
+                passphraseInput.type = "password";
+            }
+        }
+
+        function requestPassphrase(action) {
+            let passphrase = document.getElementById("passphrase").value;
+            if (passphrase.trim() === "" || passphrase.length !== 4) {
+                alert("Please enter a 4-digit passphrase!");
+                return;
+            }
+            if (action === 'export') {
+                exportKeys();
+            } else if (action === 'import') {
+                importKeys();
+            }
         }
 
         function exportKeys() {
@@ -303,26 +356,84 @@
             document.getElementById("keys").value = result;
         }
 
-        function togglePassphraseVisibility() {
-            let passphraseInput = document.getElementById("passphrase");
-            if (document.getElementById("showPassphrase").checked) {
-                passphraseInput.type = "text";
-            } else {
-                passphraseInput.type = "password";
+        function exportTable() {
+            let table = document.getElementById('historyTable');
+            let rows = [];
+            for (let i = 1; i < table.rows.length; i++) {
+                let row = [];
+                for (let j = 0; j < table.rows[i].cells.length; j++) {
+                    row.push(table.rows[i].cells[j].innerText);
+                }
+                rows.push(row);
             }
+            let json = JSON.stringify(rows);
+            encryptText(json, document.getElementById("passphrase").value).then(encrypted => {
+                document.getElementById("keys").value = encrypted;
+            });
         }
 
-        function requestPassphrase(action) {
-            let passphrase = document.getElementById("passphrase").value;
+        function importTable() {
+            let encrypted = document.getElementById("keys").value;
+            decryptText(encrypted, document.getElementById("passphrase").value).then(decrypted => {
+                let rows = JSON.parse(decrypted);
+                let table = document.getElementById('historyTable').getElementsByTagName('tbody')[0];
+                table.innerHTML = "";
+                rows.forEach(row => {
+                    let newRow = table.insertRow();
+                    row.forEach(cell => {
+                        newRow.insertCell().textContent = cell;
+                    });
+                });
+            });
+        }
+
+        async function encryptText(text, passphrase) {
             if (passphrase.trim() === "" || passphrase.length !== 4) {
                 alert("Please enter a 4-digit passphrase!");
-                return;
+                return "";
             }
-            if (action === 'export') {
-                exportKeys();
-            } else if (action === 'import') {
-                importKeys();
+
+            let charCodes = [];
+            for (let i = 0; i < text.length; i++) {
+                let charCode = BigInt(text.charCodeAt(i));
+                for (let round = 0; round < ROUNDS; round++) {
+                    charCode = doubleHashFunction(charCode, round, passphrase, passphrase);
+                }
+                charCodes.push(Number(charCode));
             }
+            let uint16array = new Uint16Array(charCodes);
+            let blob = new Blob([uint16array], {type: 'application/octet-stream'});
+            let reader = new FileReader();
+            return new Promise((resolve) => {
+                reader.onload = function() {
+                    resolve(btoa(reader.result));
+                };
+                reader.readAsBinaryString(blob);
+            });
+        }
+
+        async function decryptText(encrypted, passphrase) {
+            if (passphrase.trim() === "" || passphrase.length !== 4) {
+                alert("Please enter a 4-digit passphrase!");
+                return "";
+            }
+
+            let inputText = atob(encrypted);
+            let uint16array = new Uint16Array(inputText.length / 2);
+            for (let i = 0; i < inputText.length; i += 2) {
+                uint16array[i / 2] = inputText.charCodeAt(i) | (inputText.charCodeAt(i + 1) << 8);
+            }
+
+            let decryptedText = '';
+            for (let i = 0; i < uint16array.length; i++) {
+                let charCode = BigInt(uint16array[i]);
+                for (let round = ROUNDS - 1; round >= 0; round--) {
+                    charCode = reverseDoubleHashFunction(charCode, round, passphrase, passphrase);
+                }
+                decryptedText += String.fromCharCode(Number(charCode));
+            }
+
+            return decryptedText;
         }
     </script>
 </body>
