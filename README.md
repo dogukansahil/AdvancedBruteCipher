@@ -22,11 +22,11 @@ Simply download and open the `index.html` file to begin using the tool.
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/dogukansahil/BruteCipher.git
+    git clone https://github.com/dogukansahil/AdvancedBruteCipher.git
     ```
 2. Navigate to the project directory:
     ```bash
-    cd BruteCipher
+    cd AdvancedBruteCipher/webapp
     ```
 3. Open the `index.html` file in your browser to use the tool:
     ```bash
