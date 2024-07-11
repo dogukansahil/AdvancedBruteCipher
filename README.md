@@ -39,7 +39,7 @@ Simply download and open the `index.html` file to begin using the tool.
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/dogukansahil/BruteCipher.git
+    git clone https://github.com/dogukansahil/AdvancedBruteCipher.git
     ```
 2. Navigate to the project directory:
     ```bash
