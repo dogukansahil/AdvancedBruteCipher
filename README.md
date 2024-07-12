@@ -1,8 +1,6 @@
 # Advanced Brute Cipher (ABC)
 ## Et tu, Brute?
 
-![BruteCipher](https://brutecipher.com/BruteCipher.jpg)
-
 Welcome to BruteCipher, a simple and secure encryption tool inspired by historical figures. This is the beta version of our project, and we are constantly working on improving its features and security.
 
 ## Demo
