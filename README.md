@@ -73,7 +73,7 @@ This will update your local copy with the most recent version from the GitHub re
 ### Removing the Project
 
 If you want to remove the project from your local machine, you can use the following command:
-    ```
+    ```bash
     rm -rf BruteCipher
     ```
 
