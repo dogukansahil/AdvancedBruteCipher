@@ -269,3 +269,48 @@ async function decryptText(encrypted, passphrase) {
 
     return decryptedText;
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    let currentLang = localStorage.getItem('selectedLanguage') || 'en';
+
+    function updateTexts() {
+        document.getElementById('title').textContent = languages[currentLang].title;
+        document.getElementById('encryptionDecryption').textContent = languages[currentLang].encryptionDecryption;
+        document.getElementById('instructions').textContent = languages[currentLang].instructions;
+        document.getElementById('instructionItem1').textContent = languages[currentLang].instructionItem1;
+        document.getElementById('instructionItem2').textContent = languages[currentLang].instructionItem2;
+        document.getElementById('memorablePassphrase').textContent = languages[currentLang].memorablePassphrase;
+        document.getElementById('textToEncryptDecrypt').textContent = languages[currentLang].textToEncryptDecrypt;
+        document.getElementById('inputText').placeholder = languages[currentLang].enterText;
+        document.getElementById('extraKey1Label').textContent = languages[currentLang].extraKey1;
+        document.getElementById('extraKey1').placeholder = languages[currentLang].enterKey1;
+        document.getElementById('extraKey2Label').textContent = languages[currentLang].extraKey2;
+        document.getElementById('extraKey2').placeholder = languages[currentLang].enterKey2;
+        document.getElementById('encryptBtn').textContent = languages[currentLang].encrypt;
+        document.getElementById('decryptBtn').textContent = languages[currentLang].decrypt;
+        document.getElementById('keyExportImport').textContent = languages[currentLang].keyExportImport;
+        document.getElementById('keys').placeholder = languages[currentLang].keysJSON;
+        document.getElementById('passphraseLabel').textContent = languages[currentLang].passphrase;
+        document.getElementById('passphrase').placeholder = languages[currentLang].enterPassphrase;
+        document.getElementById('exportTableBtn').textContent = languages[currentLang].exportTable;
+        document.getElementById('importTableBtn').textContent = languages[currentLang].importTable;
+        document.getElementById('action').textContent = languages[currentLang].action;
+        document.getElementById('text').textContent = languages[currentLang].text;
+        document.getElementById('resultCol').textContent = languages[currentLang].result;
+        document.getElementById('footer').textContent = languages[currentLang].footer;
+        document.getElementById('github').textContent = languages[currentLang].github;
+        document.getElementById('languageSelector').value = currentLang;
+    }
+
+    function changeLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('selectedLanguage', lang);
+        updateTexts();
+    }
+
+    updateTexts();
+
+    document.getElementById('languageSelector').addEventListener('change', function() {
+        changeLanguage(this.value);
+    });
+});
