@@ -8,11 +8,12 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 [Demo](https://htmlpreview.github.io/?https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/webapp/index.html) | **Do not use here for encryption and decryption.**
 
 ## Features
-- Encrypt and decrypt text using a robust algorithm
-- Easy-to-use interface
-- Secure key management
-- No external CDN & API dependencies
-- All operations are performed locally in your browser using HTML, JavaScript, and CSS or local Python code.
+- **Local Processing**: All encryption and decryption processes occur locally within your browser, meaning your data is never shared with external servers.
+- - All operations are performed locally in your browser using HTML, JavaScript, and CSS or local Python code.
+- **Robust Algorithm**: Utilizes a double hashing algorithm for enhanced security, inspired by the historical figure Brutus.
+- **Secure Key Management**: Manage your encryption keys securely within your browser.
+- **User-Friendly Interface**: Simple and intuitive interface for easy encryption and decryption.
+- **Multilingual Support**: Supports multiple languages including English, **Turkish, Russian, Spanish, German, Italian, and Chinese**.
 
 ## Installation HTML Version 
 
@@ -73,7 +74,7 @@ This will update your local copy with the most recent version from the GitHub re
 ### Removing the Project
 
 If you want to remove the project from your local machine, you can use the following command:
-    ```bash
+    ```
     rm -rf BruteCipher
     ```
 
