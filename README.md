@@ -1,5 +1,29 @@
 # Advanced Brute Cipher (ABC)
 ## Et tu, Brute?
+
+# Table of Contents
+1. [Demo](#demo)
+2. [Features](#features)
+3. [Installation HTML Version](#installation-html-version)
+4. [Python Version](#python-version)
+   - [Installation](#installation)
+   - [Updating the Application](#updating-the-application)
+   - [Usage](#usage)
+   - [Removing the Project](#removing-the-project)
+5. [Extended Description](#extended-description)
+   - [Key Features](#key-features)
+   - [How It Works](#how-it-works)
+   - [Future Plans](#future-plans)
+6. [Important Notice](#important-notice)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [BruteCipher Wiki](#brutecipher-wiki)
+   - [About BruteCipher](#about-brutecipher)
+     - [Origin of the Name](#origin-of-the-name)
+     - [Unique Aspects of BruteCipher](#unique-aspects-of-brutecipher)
+   - [Future Enhancements](#future-enhancements)
+
+
 ![cover](https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/docs/public/cover.jpg?raw=true)
 
 
