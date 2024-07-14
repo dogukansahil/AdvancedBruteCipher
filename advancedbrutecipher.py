@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox, scrolledtext, ttk
 import base64
 import math
+import os
+import git
 
 MODIFIER = 9824516953
 SHIFT = 69540112799
@@ -23,7 +25,10 @@ languages = {
         "error": "Error",
         "fill_all_fields": "Please fill in all fields.",
         "failed_to_decrypt": "Failed to decrypt. Please check the input and keys. Error: ",
-        "version": "Beta Version 0.3.3 - July 2024\nGitHub: https://github.com/dogukansahil/BruteCipher"
+        "version": "Beta Version 0.3.3.1 - July 2024\nGitHub: https://github.com/dogukansahil/BruteCipher",
+        "update_available": "Update available! Please restart the application.",
+        "no_update": "You are already up to date.",
+        "not_a_git_repo": "The specified directory is not a git repository."
     },
     "tr": {
         "title": "Gelişmiş Brute Şifreleme",
@@ -37,7 +42,10 @@ languages = {
         "error": "Hata",
         "fill_all_fields": "Lütfen tüm alanları doldurun.",
         "failed_to_decrypt": "Şifre çözme başarısız oldu. Lütfen girişi ve anahtarları kontrol edin. Hata: ",
-        "version": "Beta Sürüm 0.3.3 - Temmuz 2024\nGitHub: https://github.com/dogukansahil/BruteCipher"
+        "version": "Beta Sürüm 0.3.3.1 - Temmuz 2024\nGitHub: https://github.com/dogukansahil/BruteCipher",
+        "update_available": "Güncelleme mevcut! Lütfen uygulamayı yeniden başlatın.",
+        "no_update": "Zaten güncelsiniz.",
+        "not_a_git_repo": "Belirtilen dizin bir git deposu değil."
     },
     "ru": {
         "title": "Продвинутое Брют Шифрование",
@@ -51,7 +59,9 @@ languages = {
         "error": "Ошибка",
         "fill_all_fields": "Пожалуйста, заполните все поля.",
         "failed_to_decrypt": "Не удалось расшифровать. Пожалуйста, проверьте входные данные и ключи. Ошибка: ",
-        "version": "Бета Версия 0.3.3 - Июль 2024\nGitHub: https://github.com/dogukansahil/BruteCipher"
+        "version": "Бета Версия 0.3.3.1 - Июль 2024\nGitHub: https://github.com/dogukansahil/BruteCipher",
+        "update_available": "Доступно обновление! Пожалуйста, перезапустите приложение.",
+        "no_update": "Вы уже обновлены."
     },
     "es": {
         "title": "Cifrado Avanzado de Fuerza Bruta",
@@ -65,7 +75,9 @@ languages = {
         "error": "Error",
         "fill_all_fields": "Por favor, complete todos los campos.",
         "failed_to_decrypt": "No se pudo descifrar. Por favor, verifique la entrada y las claves. Error: ",
-        "version": "Versión Beta 0.3.3 - Julio 2024\nGitHub: https://github.com/dogukansahil/BruteCipher"
+        "version": "Versión Beta 0.3.3.1 - Julio 2024\nGitHub: https://github.com/dogukansahil/BruteCipher",
+        "update_available": "¡Actualización disponible! Por favor, reinicie la aplicación.",
+        "no_update": "Ya estás actualizado."
     },
     "de": {
         "title": "Erweitertes Brute Cipher",
@@ -79,7 +91,9 @@ languages = {
         "error": "Fehler",
         "fill_all_fields": "Bitte füllen Sie alle Felder aus.",
         "failed_to_decrypt": "Entschlüsselung fehlgeschlagen. Bitte überprüfen Sie die Eingabe und die Schlüssel. Fehler: ",
-        "version": "Beta Version 0.3.3 - Juli 2024\nGitHub: https://github.com/dogukansahil/BruteCipher"
+        "version": "Beta Version 0.3.3.1 - Juli 2024\nGitHub: https://github.com/dogukansahil/BruteCipher",
+        "update_available": "Update verfügbar! Bitte starten Sie die Anwendung neu.",
+        "no_update": "Sie sind bereits auf dem neuesten Stand."
     },
     "it": {
         "title": "Cifratura Avanzata Brute",
@@ -93,7 +107,9 @@ languages = {
         "error": "Errore",
         "fill_all_fields": "Per favore, compila tutti i campi.",
         "failed_to_decrypt": "Impossibile decrittografare. Si prega di controllare l'input e le chiavi. Errore: ",
-        "version": "Versione Beta 0.3.3 - Luglio 2024\nGitHub: https://github.com/dogukansahil/BruteCipher"
+        "version": "Versione Beta 0.3.3.1 - Luglio 2024\nGitHub: https://github.com/dogukansahil/BruteCipher",
+        "update_available": "Aggiornamento disponibile! Si prega di riavviare l'applicazione.",
+        "no_update": "Sei già aggiornato."
     },
     "zh": {
         "title": "高级暴力密码",
@@ -107,7 +123,9 @@ languages = {
         "error": "错误",
         "fill_all_fields": "请填写所有字段。",
         "failed_to_decrypt": "解密失败。请检查输入和密钥。错误：",
-        "version": "Beta版本 0.3.3 - 2024年7月\nGitHub: https://github.com/dogukansahil/BruteCipher"
+        "version": "Beta版本 0.3.3.1 - 2024年7月\nGitHub: https://github.com/dogukansahil/BruteCipher",
+        "update_available": "更新可用！请重新启动应用程序。",
+        "no_update": "您已经是最新的。"
     }
 }
 
@@ -204,6 +222,22 @@ def change_language(lang):
     history_label.config(text=translate("history"))
     footer.config(text=translate("version"))
 
+def update_application():
+    repo_path = os.path.abspath("/Users/sahil/Desktop/AdvancedBruteCipher")  # Git deposunun doğru yolunu belirtin
+    try:
+        repo = git.Repo(repo_path)
+    except git.exc.InvalidGitRepositoryError:
+        messagebox.showerror(translate("error"), translate("not_a_git_repo"))
+        return
+    
+    current_commit = repo.head.commit
+    repo.remote().pull()
+    new_commit = repo.head.commit
+    if current_commit != new_commit:
+        messagebox.showinfo(translate("update_available"), translate("update_available"))
+    else:
+        messagebox.showinfo(translate("no_update"), translate("no_update"))
+
 root = tk.Tk()
 root.title(translate("title"))
 root.geometry("1000x800")
@@ -243,6 +277,9 @@ encrypt_button.pack(side=tk.LEFT, padx=10, pady=10)
 
 decrypt_button = tk.Button(frame, text=translate("decrypt"), command=decrypt)
 decrypt_button.pack(side=tk.RIGHT, padx=10, pady=10)
+
+update_button = tk.Button(frame, text="Update Application", command=update_application)
+update_button.pack(side=tk.BOTTOM, padx=10, pady=10)
 
 output_label = tk.Label(frame, text=translate("result"))
 output_label.pack()
