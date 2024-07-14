@@ -1,5 +1,7 @@
 # Advanced Brute Cipher (ABC)
 ## Et tu, Brute?
+![cover](https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/docs/public/cover.jpg?raw=true)
+
 
 Welcome to BruteCipher, a simple and secure encryption tool inspired by historical figures. This is the beta version of our project, and we are constantly working on improving its features and security.
 
