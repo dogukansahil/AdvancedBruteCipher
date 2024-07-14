@@ -23,7 +23,7 @@ const languages = {
         action: "Action",
         text: "Text",
         result: "Result",
-        footer: "Beta Version 0.3.2 - July 2024",
+        footer: "Beta Version 0.3.3 - July 2024",
         github: "GitHub"
     },
     tr: {
@@ -50,7 +50,7 @@ const languages = {
         action: "Eylem",
         text: "Metin",
         result: "Sonuç",
-        footer: "Beta Sürüm 0.3.2 - Temmuz 2024",
+        footer: "Beta Sürüm 0.3.3 - Temmuz 2024",
         github: "GitHub"
     },
     ru: {
@@ -77,7 +77,7 @@ const languages = {
         action: "Действие",
         text: "Текст",
         result: "Результат",
-        footer: "Бета Версия 0.3.2 - Июль 2024",
+        footer: "Бета Версия 0.3.3 - Июль 2024",
         github: "GitHub"
     },
     es: {
@@ -104,7 +104,7 @@ const languages = {
         action: "Acción",
         text: "Texto",
         result: "Resultado",
-        footer: "Versión Beta 0.3.2 - Julio 2024",
+        footer: "Versión Beta 0.3.3 - Julio 2024",
         github: "GitHub"
     },
     de: {
@@ -131,7 +131,7 @@ const languages = {
         action: "Aktion",
         text: "Text",
         result: "Ergebnis",
-        footer: "Beta Version 0.3.2 - Juli 2024",
+        footer: "Beta Version 0.3.3 - Juli 2024",
         github: "GitHub"
     },
     it: {
@@ -158,7 +158,7 @@ const languages = {
         action: "Azione",
         text: "Testo",
         result: "Risultato",
-        footer: "Versione Beta 0.3.2 - Luglio 2024",
+        footer: "Versione Beta 0.3.3 - Luglio 2024",
         github: "GitHub"
     },
     zh: {
@@ -185,7 +185,7 @@ const languages = {
         action: "操作",
         text: "文本",
         result: "结果",
-        footer: "Beta版本 0.3.2 - 2024年7月",
+        footer: "Beta版本 0.3.3 - 2024年7月",
         github: "GitHub"
     }
 };

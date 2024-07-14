@@ -8,14 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="encryptionDecryption">Encryption and Decryption</h1>
+        <h1 id="encryptionDecryption"></h1>
         <div class="instructions">
-            <p id="instructions">This tool allows you to encrypt and decrypt text using two keys. You can either:</p>
+            <p id="instructions"></p>
             <ul>
-                <li id="instructionItem1">Remember or note down the two keys (Extra Key 1 and Extra Key 2),</li>
-                <li id="instructionItem2">Or remember or note down a 4-digit passphrase to export/import the keys securely.</li>
+                <li id="instructionItem1"></li>
+                <li id="instructionItem2"></li>
             </ul>
-            <p id="memorablePassphrase">If you use a memorable passphrase (e.g., the name of the platform like "github"), it will be easier to recall. Only one of these (either the two keys or the 4-digit passphrase) is enough to securely manage your encrypted data.</p>
+            <p id="memorablePassphrase"></p>
             <select id="languageSelector">
                 <option value="en">English</option>
                 <option value="tr">Türkçe</option>
@@ -26,37 +26,37 @@
                 <option value="zh">中文</option>
             </select>
         </div>
-        <label for="inputText" id="textToEncryptDecrypt">Text to Encrypt/Decrypt:</label>
+        <label for="inputText" id="textToEncryptDecrypt"></label>
         <input type="text" id="inputText" placeholder="Enter text...">
-        <label for="extraKey1" id="extraKey1Label">Extra Key 1:</label>
+        <label for="extraKey1" id="extraKey1Label"></label>
         <input type="text" id="extraKey1" placeholder="Enter key 1...">
-        <label for="extraKey2" id="extraKey2Label">Extra Key 2:</label>
+        <label for="extraKey2" id="extraKey2Label"></label>
         <input type="text" id="extraKey2" placeholder="Enter key 2...">
-        <button onclick="encrypt()" id="encryptBtn">Encrypt</button>
-        <button onclick="decrypt()" id="decryptBtn">Decrypt</button>
+        <button onclick="encrypt()" id="encryptBtn"></button>
+        <button onclick="decrypt()" id="decryptBtn"></button>
         <p id="result"></p>
         <hr>
-        <label for="keys" id="keyExportImport">Key Export/Import:</label>
+        <label for="keys" id="keyExportImport"></label>
         <textarea id="keys" placeholder="Keys JSON..."></textarea>
-        <label for="passphrase" id="passphraseLabel">4-digit Passphrase:</label>
+        <label for="passphrase" id="passphraseLabel"></label>
         <div class="show-passphrase">
             <input type="text" id="passphrase" placeholder="Enter your passphrase...">
         </div>
-        <button onclick="exportTable()" id="exportTableBtn">Export Table</button>
-        <button onclick="importTable()" id="importTableBtn">Import Table</button>
+        <button onclick="exportTable()" id="exportTableBtn"></button>
+        <button onclick="importTable()" id="importTableBtn"></button>
         <table id="historyTable">
             <thead>
                 <tr>
-                    <th id="action">Action</th>
-                    <th id="text">Text</th>
-                    <th id="resultCol">Result</th>
+                    <th id="action"></th>
+                    <th id="text"></th>
+                    <th id="resultCol"></th>
                 </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
         <div class="footer">
-            <p id="footer">Beta Version 0.3.3 - July 2024 </p><p><a href="https://github.com/dogukansahil/BruteCipher" id="github">GitHub</a></p>
+            <p id="footer"></p><p><a href="https://github.com/dogukansahil/BruteCipher" id="github"></a></p>
         </div>
     </div>
     <script src="js/languages.js"></script>
