@@ -42,12 +42,12 @@ Simply download and open the `index.html` file to begin using the tool.
     ```
 2. Navigate to the project directory:
     ```bash
-    cd BruteCipher
+    cd AdvancedBruteCipher
     ```
 3. Make sure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
 4. Run the Python application:
     ```bash
-    python brutecipher.py
+    python AdvancedBruteCipher.py
     ```
 
 ### Updating the Application
@@ -56,7 +56,7 @@ To ensure you have the latest updates and improvements:
 
 1. Navigate to the project directory if you are not already there:
     ```bash
-    cd BruteCipher
+    cd AdvancedBruteCipher
     ```
 2. Pull the latest changes from the repository:
     ```bash
@@ -75,7 +75,7 @@ This will update your local copy with the most recent version from the GitHub re
 
 If you want to remove the project from your local machine, you can use the following command:
     ```
-    rm -rf BruteCipher
+    rm -rf AdvancedBruteCipher
     ```
 
 ## Extended Description
