@@ -8,11 +8,12 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 [Demo](https://htmlpreview.github.io/?https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/webapp/index.html) | **Do not use here for encryption and decryption.**
 
 ## Features
-- Encrypt and decrypt text using a robust algorithm
-- Easy-to-use interface
-- Secure key management
-- No external CDN & API dependencies
-- All operations are performed locally in your browser using HTML, JavaScript, and CSS or local Python code.
+- **Local Processing**: All encryption and decryption processes occur locally within your browser, meaning your data is never shared with external servers.
+- - All operations are performed locally in your browser using HTML, JavaScript, and CSS or local Python code.
+- **Robust Algorithm**: Utilizes a double hashing algorithm for enhanced security, inspired by the historical figure Brutus.
+- **Secure Key Management**: Manage your encryption keys securely within your browser.
+- **User-Friendly Interface**: Simple and intuitive interface for easy encryption and decryption.
+- **Multilingual Support**: Supports multiple languages including English, **Turkish, Russian, Spanish, German, Italian, and Chinese**.
 
 ## Installation HTML Version 
 
@@ -41,12 +42,12 @@ Simply download and open the `index.html` file to begin using the tool.
     ```
 2. Navigate to the project directory:
     ```bash
-    cd BruteCipher
+    cd AdvancedBruteCipher
     ```
 3. Make sure you have Python installed on your system. You can download it from [python.org](https://www.python.org/).
 4. Run the Python application:
     ```bash
-    python brutecipher.py
+    python AdvancedBruteCipher.py
     ```
 
 ### Updating the Application
@@ -55,7 +56,7 @@ To ensure you have the latest updates and improvements:
 
 1. Navigate to the project directory if you are not already there:
     ```bash
-    cd BruteCipher
+    cd AdvancedBruteCipher
     ```
 2. Pull the latest changes from the repository:
     ```bash
@@ -74,7 +75,7 @@ This will update your local copy with the most recent version from the GitHub re
 
 If you want to remove the project from your local machine, you can use the following command:
     ```
-    rm -rf BruteCipher
+    rm -rf AdvancedBruteCipher
     ```
 
 ## Extended Description
