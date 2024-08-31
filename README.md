@@ -34,7 +34,7 @@ Welcome to BruteCipher, a simple and secure encryption tool inspired by historic
 [Demo](https://htmlpreview.github.io/?https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/webapp/index.html) | **Do not use here for encryption and decryption.**
 
 ## Features
-- **Local Processing**: All encryption and decryption processes occur locally within your browser, meaning your data is never shared with external servers.
+- **Local Processing**: All encryption and decryption processes occur locally within your browser, meaning your data is never shared with external servers. (Only the language selection is stored in the browser.)
 - - All operations are performed locally in your browser using HTML, JavaScript, and CSS or local Python code.
 - **Robust Algorithm**: Utilizes a double hashing algorithm for enhanced security, inspired by the historical figure Brutus.
 - **Secure Key Management**: Manage your encryption keys securely within your browser.
