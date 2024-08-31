@@ -23,8 +23,9 @@ const languages = {
         action: "Action",
         text: "Text",
         result: "Result",
-        footer: "Beta Version 0.3.3 - July 2024",
-        github: "GitHub"
+        footer: "Beta 0.4",
+        github: "GitHub",
+        delete: "Delete"
     },
     tr: {
         title: "Gelişmiş Brute Şifreleme",
@@ -50,8 +51,9 @@ const languages = {
         action: "Eylem",
         text: "Metin",
         result: "Sonuç",
-        footer: "Beta Sürüm 0.3.3 - Temmuz 2024",
-        github: "GitHub"
+        footer: "Beta 0.4",
+        github: "GitHub",
+        delete: "Sil"
     },
     ru: {
         title: "Продвинутое Брют Шифрование",
@@ -77,8 +79,9 @@ const languages = {
         action: "Действие",
         text: "Текст",
         result: "Результат",
-        footer: "Бета Версия 0.3.3 - Июль 2024",
-        github: "GitHub"
+        footer: "Beta 0.4",
+        github: "GitHub",
+        delete: "Удалить"
     },
     es: {
         title: "Cifrado Avanzado de Fuerza Bruta",
@@ -104,8 +107,9 @@ const languages = {
         action: "Acción",
         text: "Texto",
         result: "Resultado",
-        footer: "Versión Beta 0.3.3 - Julio 2024",
-        github: "GitHub"
+        footer: "Beta 0.4",
+        github: "GitHub",
+        delete: "Borrar"
     },
     de: {
         title: "Erweitertes Brute Cipher",
@@ -131,8 +135,9 @@ const languages = {
         action: "Aktion",
         text: "Text",
         result: "Ergebnis",
-        footer: "Beta Version 0.3.3 - Juli 2024",
-        github: "GitHub"
+        footer: "Beta 0.4",
+        github: "GitHub",
+        delete: "Löschen"
     },
     it: {
         title: "Cifratura Avanzata Brute",
@@ -158,8 +163,9 @@ const languages = {
         action: "Azione",
         text: "Testo",
         result: "Risultato",
-        footer: "Versione Beta 0.3.3 - Luglio 2024",
-        github: "GitHub"
+        footer: "Beta 0.4",
+        github: "GitHub",
+        delete: "Eliminare"
     },
     zh: {
         title: "高级暴力密码",
@@ -185,7 +191,8 @@ const languages = {
         action: "操作",
         text: "文本",
         result: "结果",
-        footer: "Beta版本 0.3.3 - 2024年7月",
-        github: "GitHub"
+        footer: "Beta 0.4",
+        github: "GitHub",
+        delete: "删除"
     }
 };
