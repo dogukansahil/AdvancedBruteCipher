@@ -46,11 +46,9 @@ function encrypt() {
     let extraKey1 = document.getElementById("extraKey1").value;
     let extraKey2 = document.getElementById("extraKey2").value;
     let charCodes = [];
-
     while (inputText.length % BLOCK_SIZE !== 0) {
         inputText += '\0';
     }
-
     for (let i = 0; i < inputText.length; i++) {
         let charCode = BigInt(inputText.charCodeAt(i));
         for (let round = 0; round < ROUNDS; round++) {
@@ -58,7 +56,6 @@ function encrypt() {
         }
         charCodes.push(Number(charCode));
     }
-
     let uint16array = new Uint16Array(charCodes);
     let blob = new Blob([uint16array], {type: 'application/octet-stream'});
     let reader = new FileReader();
@@ -74,11 +71,9 @@ function decrypt() {
     let extraKey1 = document.getElementById("extraKey1").value;
     let extraKey2 = document.getElementById("extraKey2").value;
     let uint16array = new Uint16Array(inputText.length / 2);
-
     for (let i = 0; i < inputText.length; i += 2) {
         uint16array[i / 2] = inputText.charCodeAt(i) | (inputText.charCodeAt(i + 1) << 8);
     }
-
     let decryptedText = '';
     for (let i = 0; i < uint16array.length; i++) {
         let charCode = BigInt(uint16array[i]);
@@ -87,7 +82,6 @@ function decrypt() {
         }
         decryptedText += String.fromCharCode(Number(charCode));
     }
-
     decryptedText = decryptedText.replace(/\0+$/, '');
     document.getElementById("result").innerText = "Decrypted Text: " + decryptedText;
     updateHistory('Decrypt', document.getElementById("inputText").value, decryptedText);
@@ -99,7 +93,18 @@ function updateHistory(action, text, result) {
     newRow.insertCell(0).textContent = action;
     newRow.insertCell(1).textContent = text;
     newRow.insertCell(2).textContent = result;
+    let deleteCell = newRow.insertCell(3);
+    let deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'X';
+    deleteBtn.onclick = function() { deleteRow(this); };
+    deleteCell.appendChild(deleteBtn);
 }
+
+function deleteRow(btn) {
+    let row = btn.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
 
 function togglePassphraseVisibility() {
     let passphraseInput = document.getElementById("passphrase");
@@ -272,7 +277,6 @@ async function decryptText(encrypted, passphrase) {
 
 document.addEventListener('DOMContentLoaded', function() {
     let currentLang = localStorage.getItem('selectedLanguage') || 'en';
-
     function updateTexts() {
         document.getElementById('title').textContent = languages[currentLang].title;
         document.getElementById('encryptionDecryption').textContent = languages[currentLang].encryptionDecryption;
@@ -297,19 +301,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('action').textContent = languages[currentLang].action;
         document.getElementById('text').textContent = languages[currentLang].text;
         document.getElementById('resultCol').textContent = languages[currentLang].result;
+        document.getElementById('delete').textContent = languages[currentLang].delete;
         document.getElementById('footer').textContent = languages[currentLang].footer;
         document.getElementById('github').textContent = languages[currentLang].github;
         document.getElementById('languageSelector').value = currentLang;
     }
-
     function changeLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('selectedLanguage', lang);
         updateTexts();
     }
-
     updateTexts();
-
     document.getElementById('languageSelector').addEventListener('change', function() {
         changeLanguage(this.value);
     });
