@@ -2,11 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">Advanced Brute Cipher</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="switch-container">
+        <label class="switch" id="toggle-theme-label">
+            <input type="checkbox" id="toggle-theme">
+            <span class="slider round"></span>
+        </label>
+        <div class="language-switch">
+            <select id="languageSelector">
+                <option value="en">🇬🇧</option>
+                <option value="tr">🇹🇷</option>
+                <option value="ru">🇷🇺</option>
+                <option value="es">🇪🇸</option>
+                <option value="de">🇩🇪</option>
+                <option value="it">🇮🇹</option>
+                <option value="zh">🇨🇳</option>
+            </select>
+        </div>
+    </div>
     <div class="container">
         <h1 id="encryptionDecryption"></h1>
         <div class="instructions">
@@ -16,15 +34,6 @@
                 <li id="instructionItem2"></li>
             </ul>
             <p id="memorablePassphrase"></p>
-            <select id="languageSelector">
-                <option value="en">English</option>
-                <option value="tr">Türkçe</option>
-                <option value="ru">Русский</option>
-                <option value="es">Español</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-                <option value="zh">中文</option>
-            </select>
         </div>
         <label for="inputText" id="textToEncryptDecrypt"></label>
         <input type="text" id="inputText" placeholder="Enter text...">
@@ -47,20 +56,60 @@
         <table id="historyTable">
             <thead>
                 <tr>
-                    <th id="action"></th>
-                    <th id="text"></th>
-                    <th id="resultCol"></th>
-                    <th id="delete"></th>
+                    <th id="action">Action</th>
+                    <th id="text">Text</th>
+                    <th id="resultCol">Result</th>
+                    <th id="extraKey1Col">Extra Key 1</th>
+                    <th id="extraKey2Col">Extra Key 2</th>
+                    <th id="delete">Delete</th>
                 </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
         <div class="footer">
-            <p id="footer"></p><p><a href="https://github.com/dogukansahil/BruteCipher" id="github" target="_blank"></a></p>
+            <hr>
+            <p id="footer"></p>     
+            <p>
+                <a href="https://dogukansahil.com" id="website" target="_blank">Dogukan Sahil</a> | 
+                <a href="https://github.com/dogukansahil/BruteCipher" id="github" target="_blank">GitHub</a>
+            </p>
         </div>
     </div>
     <script src="js/languages.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleButton = document.getElementById('toggle-theme');
+            const body = document.body;
+
+            function updateButton() {
+                if (body.classList.contains('dark-mode')) {
+                    toggleButton.classList.add('dark');
+                } else {
+                    toggleButton.classList.remove('dark');
+                }
+            }
+
+            const cachedMode = localStorage.getItem('themeMode');
+            if (cachedMode === 'dark') {
+                body.classList.add('dark-mode');
+                toggleButton.checked = true;
+            } else {
+                toggleButton.checked = false;
+            }
+
+            toggleButton.addEventListener('change', function () {
+                body.classList.toggle('dark-mode');
+
+                const currentMode = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                localStorage.setItem('themeMode', currentMode);
+
+                updateButton();
+            });
+
+            updateButton();
+        });
+    </script>
 </body>
 </html>
