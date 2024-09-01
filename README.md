@@ -1,3 +1,5 @@
+![cover](https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/docs/public/cover.jpg?raw=true)
+
 # Advanced Brute Cipher (ABC)
 ## Et tu, Brute?
 BruteCipher is a simple and secure encryption tool that performs all operations locally in your browser using HTML, JavaScript, and CSS. Manage your encryption keys without relying on external CDNs. This project is a web-based encryption and decryption tool that supports multiple languages and includes features like dark mode, mobile compatibility, and key management. It's designed to provide a user-friendly interface for secure data handling.
@@ -26,10 +28,6 @@ BruteCipher is a simple and secure encryption tool that performs all operations 
      - [Origin of the Name](#origin-of-the-name)
      - [Unique Aspects of BruteCipher](#unique-aspects-of-brutecipher)
    - [Future Enhancements](#future-enhancements)
-
-
-![cover](https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/docs/public/cover.jpg?raw=true)
-
 
 Welcome to BruteCipher, a simple and secure encryption tool inspired by historical figures. This is the beta version of our project, and we are constantly working on improving its features and security.
 
