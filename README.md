@@ -1,7 +1,7 @@
 # Advanced Brute Cipher (ABC)
 ![cover](https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/docs/public/cover.jpg?raw=true)
 ## Et tu, Brute?
-Advanced Brute Cipher is a simple and secure encryption tool that performs all operations locally in your browser using HTML, JavaScript, and CSS. Manage your encryption keys without relying on external CDNs. This project is a web-based encryption and decryption tool that supports multiple languages and includes features like dark mode, mobile compatibility, and key management. It's designed to provide a user-friendly interface for secure data handling.
+Advanced Brute Cipher is a simple and secure encryption tool that performs all operations locally in your browser using HTML, JavaScript, and CSS. Manage your encryption keys without relying on external CDNs. This project is a **web-based** encryption and decryption tool that supports multiple languages and includes features like dark mode, mobile compatibility, and key management. It's designed to provide a user-friendly interface for secure data handling.
 ## Demo
 
 **[Demo](https://htmlpreview.github.io/?https://github.com/dogukansahil/AdvancedBruteCipher/blob/main/webapp/index.html) | Do not use here for encryption and decryption.**
