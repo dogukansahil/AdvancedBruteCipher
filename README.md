@@ -155,3 +155,5 @@ We are continuously working on enhancing BruteCipher. Future updates will includ
 - Enhanced security features
 - Support for more complex encryption algorithms
 - Integration with local password storage systems
+
+##Open source, free software.
