@@ -1,5 +1,6 @@
 # Advanced Brute Cipher (ABC)
 ## Et tu, Brute?
+BruteCipher is a simple and secure encryption tool that performs all operations locally in your browser using HTML, JavaScript, and CSS. Manage your encryption keys without relying on external CDNs. This project is a web-based encryption and decryption tool that supports multiple languages and includes features like dark mode, mobile compatibility, and key management. It's designed to provide a user-friendly interface for secure data handling.
 
 # Table of Contents
 1. [Demo](#demo)
