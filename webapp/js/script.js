@@ -60,8 +60,9 @@ function encrypt() {
     let blob = new Blob([uint16array], {type: 'application/octet-stream'});
     let reader = new FileReader();
     reader.onload = function() {
-        document.getElementById("result").innerText = "Encrypted Text: " + btoa(reader.result);
-        updateHistory('Encrypt', inputText, btoa(reader.result));
+        document.getElementById("result").innerText = "🔐 " + btoa(reader.result);
+updateHistory('🔐', inputText, btoa(reader.result), extraKey1, extraKey2);
+
     };
     reader.readAsBinaryString(blob);
 }
@@ -83,22 +84,26 @@ function decrypt() {
         decryptedText += String.fromCharCode(Number(charCode));
     }
     decryptedText = decryptedText.replace(/\0+$/, '');
-    document.getElementById("result").innerText = "Decrypted Text: " + decryptedText;
-    updateHistory('Decrypt', document.getElementById("inputText").value, decryptedText);
+    document.getElementById("result").innerText = "🔓 " + decryptedText;
+updateHistory('🔓', document.getElementById("inputText").value, decryptedText, extraKey1, extraKey2);
+
 }
 
-function updateHistory(action, text, result) {
+function updateHistory(action, text, result, extraKey1, extraKey2) {
     let table = document.getElementById('historyTable').getElementsByTagName('tbody')[0];
     let newRow = table.insertRow();
     newRow.insertCell(0).textContent = action;
     newRow.insertCell(1).textContent = text;
     newRow.insertCell(2).textContent = result;
-    let deleteCell = newRow.insertCell(3);
+    newRow.insertCell(3).textContent = extraKey1;  
+    newRow.insertCell(4).textContent = extraKey2;  
+    let deleteCell = newRow.insertCell(5); 
     let deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'X';
     deleteBtn.onclick = function() { deleteRow(this); };
     deleteCell.appendChild(deleteBtn);
 }
+
 
 function deleteRow(btn) {
     let row = btn.parentNode.parentNode;
@@ -305,6 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('footer').textContent = languages[currentLang].footer;
         document.getElementById('github').textContent = languages[currentLang].github;
         document.getElementById('languageSelector').value = currentLang;
+
     }
     function changeLanguage(lang) {
         currentLang = lang;
