@@ -23,8 +23,10 @@ const languages = {
         action: "Action",
         text: "Text",
         result: "Result",
-        footer: "Beta 0.4",
+        footer: "Beta 0.5",
         github: "GitHub",
+                encryptAction: "Şifrele",
+        decryptAction: "Şifre Çöz",
         delete: "Delete"
     },
     tr: {
@@ -51,8 +53,10 @@ const languages = {
         action: "Eylem",
         text: "Metin",
         result: "Sonuç",
-        footer: "Beta 0.4",
+        footer: "Beta 0.5",
         github: "GitHub",
+                encryptAction: "Şifrele",
+        decryptAction: "Şifre Çöz",
         delete: "Sil"
     },
     ru: {
@@ -79,8 +83,10 @@ const languages = {
         action: "Действие",
         text: "Текст",
         result: "Результат",
-        footer: "Beta 0.4",
+        footer: "Beta 0.5",
         github: "GitHub",
+                encryptAction: "Şifrele",
+        decryptAction: "Şifre Çöz",
         delete: "Удалить"
     },
     es: {
@@ -107,8 +113,10 @@ const languages = {
         action: "Acción",
         text: "Texto",
         result: "Resultado",
-        footer: "Beta 0.4",
+        footer: "Beta 0.5",
         github: "GitHub",
+                encryptAction: "Şifrele",
+        decryptAction: "Şifre Çöz",
         delete: "Borrar"
     },
     de: {
@@ -135,8 +143,10 @@ const languages = {
         action: "Aktion",
         text: "Text",
         result: "Ergebnis",
-        footer: "Beta 0.4",
+        footer: "Beta 0.5",
         github: "GitHub",
+                encryptAction: "Şifrele",
+        decryptAction: "Şifre Çöz",
         delete: "Löschen"
     },
     it: {
@@ -163,8 +173,10 @@ const languages = {
         action: "Azione",
         text: "Testo",
         result: "Risultato",
-        footer: "Beta 0.4",
+        footer: "Beta 0.5",
         github: "GitHub",
+                encryptAction: "Şifrele",
+        decryptAction: "Şifre Çöz",
         delete: "Eliminare"
     },
     zh: {
@@ -191,8 +203,10 @@ const languages = {
         action: "操作",
         text: "文本",
         result: "结果",
-        footer: "Beta 0.4",
+        footer: "Beta 0.5",
         github: "GitHub",
+                encryptAction: "Şifrele",
+        decryptAction: "Şifre Çöz",
         delete: "删除"
     }
 };
